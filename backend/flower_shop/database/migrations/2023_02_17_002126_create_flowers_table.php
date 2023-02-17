@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('flowers', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('description');
+            $table->foreignId('category_id');
+
+            $table->id();
+
+            
         });
     }
 
