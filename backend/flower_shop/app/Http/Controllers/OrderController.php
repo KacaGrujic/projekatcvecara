@@ -1,20 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Arrangement;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Order;
+use App\Http\Resources\OrderResource;
+use App\Http\Resources\OrderCollection;
 use Illuminate\Http\Request;
 
-
-class ArrangementController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $orders=Order::all();
+        return new OrderCollection($flowers);
     }
 
     /**
@@ -36,15 +36,15 @@ class ArrangementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Arrangement $arrangement)
+    public function show(Order $order)
     {
-        //
+        return new OrderResource($order);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Arrangement $arrangement)
+    public function edit(Order $order)
     {
         //
     }
@@ -52,7 +52,7 @@ class ArrangementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Arrangement $arrangement)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -60,7 +60,7 @@ class ArrangementController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Arrangement $arrangement){
+    public function destroy(Order $order){
         //
     }
 }

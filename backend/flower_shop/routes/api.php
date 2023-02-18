@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\FlowerController;
 
 
 /*
@@ -23,5 +24,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         return auth()->user();
     });
 
+    Route::resource('flowers', FlowerController::class)->only(['update','store','destroy']);
+
+
     Route::post('/logout', [AuthController::class, 'logout']);
 });
+
+Route::resource('flowers', FlowerController::class)->only(['index','show']);
