@@ -340,8 +340,8 @@ class ComposerStaticInit44759ad4fc44733e4cd36627a05939a9
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -520,6 +520,7 @@ class ComposerStaticInit44759ad4fc44733e4cd36627a05939a9
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Arrangement' => __DIR__ . '/../..' . '/app/Models/Arrangement.php',
+        'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Client' => __DIR__ . '/../..' . '/app/Models/Client.php',
         'App\\Models\\Flower' => __DIR__ . '/../..' . '/app/Models/Flower.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',

@@ -26,6 +26,7 @@ function handleLogin(e){
         console.log(res.data);
         if(res.data.success===true){
             window.sessionStorage.setItem("auth_token", res.data.access_token)
+            sessionStorage.setItem("data", "All the Best");
         }
     })
     .catch((e=>{
