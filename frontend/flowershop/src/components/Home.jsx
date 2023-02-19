@@ -1,28 +1,26 @@
 import React from "react";
+import "../style/homepage.css"
+import { Outlet } from "react-router-dom";
 
-function HomePage() {
-    let arrangements;
-  return (
-    <div>
-      <h1>Welcome to our Flower Shop</h1>
-      <p>Discover a wide selection of beautiful flowers for all occasions.</p>
-      <img src="flower-shop.jpg" alt="Flower shop" />
-
-      <h2>Featured Arrangements</h2>
-      {arrangements.map((a)=> (
-        <Arrangement a={a}/>
-      ))}
-
-      <button>View More Arrangements</button>
-
-      <h2>About Us</h2>
-      <p>
-        Our flower shop has been serving the community for over 20 years. We
-        take pride in providing the freshest and most beautiful flowers for all
-        occasions.
-      </p>
-    </div>
+function Home() {
+  const petals = Array.from({ length: 10 }, () => ({ randomX: Math.random(), randomDelay: Math.random() }));  return (
+    <div className="home-page">
+<h1 className="welcome-message">
+        Dobrodosli u online cvecaru!
+        {/* <div className="heart"></div> */}
+        
+      </h1>
+      {/* <div className="petal-container">
+        {petals.map(({ randomX, randomDelay }, index) => (
+          <div key={index} className="petal" style={{ "--random-x": randomX, "--random-delay": randomDelay }}></div>
+        ))}
+      </div> */}
+      <Outlet/>
+</div>
+    
   );
 }
 
-export default HomePage;
+
+export default Home;
+

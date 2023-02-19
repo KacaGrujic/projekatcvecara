@@ -73,10 +73,10 @@ function handleLogout(){
               <Link className='navbar-brand' to='/'>Cvećara</Link>
               <NavLink className='nav-link' activeClassName='active' exact to='/'>Home</NavLink>
               <NavLink className='nav-link' to='/shop'>Store</NavLink>
-              {<NavLink className='nav-link' to='/orders'>My Orders</NavLink>}
+              {/* {<NavLink className='nav-link' to='/orders'>My Orders</NavLink>}
               {<NavLink className='nav-link' to='/admin/create'>Create New Offer</NavLink>}
               { <NavLink className='nav-link' to='/admin/orders/pending'>Pending Orders</NavLink>}
-              {<NavLink className='nav-link' to='/cart'>Cart</NavLink>}
+              {<NavLink className='nav-link' to='/cart'>Cart</NavLink>} */}
              {token==null ? (<a className='nav-link' href='/login'>Login</a>):(<a className='nav-link' href='#' onClick={handleLogout}>Logout</a>)}
               {<NavLink className='nav-link' to='/register'>Register</NavLink>}
       </nav>

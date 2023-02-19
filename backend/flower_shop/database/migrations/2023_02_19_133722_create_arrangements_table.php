@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('quantity');
             $table->double('price',5,2);
             $table->foreignId('category_id');
-
             $table->foreignId('flower_id');
 
             $table->timestamps();

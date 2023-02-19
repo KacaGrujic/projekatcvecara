@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Order;
 
 use App\Models\Flower;
 use App\Models\Category;
@@ -26,10 +27,10 @@ class Arrangement extends Model
         return $this->belongsTo(Category::class,'category_id');
     }
 
-    // public function order()
-    // {
-    //     return $this->hasMany(Order::class);
-    // }
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 
 
    

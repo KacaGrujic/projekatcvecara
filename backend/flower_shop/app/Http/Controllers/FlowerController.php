@@ -8,7 +8,7 @@ use App\Http\Resources\FlowerCollection;
 use Illuminate\Http\Request;
 
 
-class FlowerController extends Controller
+class ArrangementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,7 +33,7 @@ class FlowerController extends Controller
     public function store(Request $request)
     {
         $validator=Validator::make($request->all(),[
-            'flower_id'=>'required|min:5',
+            'flower_id'=>'required',
             'name'=>'required',
             'description'=>'required',
             'category_id'=>'required',

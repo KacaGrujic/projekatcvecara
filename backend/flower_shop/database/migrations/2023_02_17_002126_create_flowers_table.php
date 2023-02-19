@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('flowers', function (Blueprint $table) {
             $table->id('flower_id');
             $table->string('name');
-            $table->string('description');
-            $table->foreignId('category_id');
+            // $table->string('description');
+            // $table->foreignId('category_id');
            // $table->double('price',5,2);
 
         });
