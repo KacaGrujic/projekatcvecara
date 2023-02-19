@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id('order_id');
-            $table->foreignId('flower_id');
+            $table->foreignId('arrangement_id');
             $table->foreignId('user_id');
             $table->integer('quantity');
-            $table->timestamps('date_of_order');
-            $table->unique(array('id', 'order_id'));
+            $table->date('date_of_order');
+           // $table->unique(array('id', 'order_id'));
         });
     }
 

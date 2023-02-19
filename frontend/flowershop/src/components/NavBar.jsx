@@ -2,7 +2,7 @@ import React from 'react'
 import {Link, NavLink} from 'react-router-dom'
 import '../style/navbar.css';
 import axios from "axios"
-
+import { Outlet } from 'react-router-dom';
 
 // import React from 'react'
 // import '../style/navbar.css';
@@ -67,11 +67,12 @@ function handleLogout(){
 
 
   return (
+    <div>
     <header>
       <nav className='navbar-menu'>
               <Link className='navbar-brand' to='/'>Cvećara</Link>
               <NavLink className='nav-link' activeClassName='active' exact to='/'>Home</NavLink>
-              <NavLink className='nav-link' to='/store'>Store</NavLink>
+              <NavLink className='nav-link' to='/shop'>Store</NavLink>
               {<NavLink className='nav-link' to='/orders'>My Orders</NavLink>}
               {<NavLink className='nav-link' to='/admin/create'>Create New Offer</NavLink>}
               { <NavLink className='nav-link' to='/admin/orders/pending'>Pending Orders</NavLink>}
@@ -80,6 +81,8 @@ function handleLogout(){
               {<NavLink className='nav-link' to='/register'>Register</NavLink>}
       </nav>
     </header>
+    <Outlet/>
+    </div>
   )
 }
 

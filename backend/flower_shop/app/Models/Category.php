@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Flower;
+use App\Models\Arrangement;
 
 
 class Category extends Model
@@ -14,8 +14,8 @@ class Category extends Model
     public $timestamps=false;
     protected $primaryKey = 'category_id';
 
-    public function flower()
+    public function arrangement()
     {
-        return $this->hasMany(Flower::class);
+        return $this->hasMany(Arrangement::class);
     }  
 }

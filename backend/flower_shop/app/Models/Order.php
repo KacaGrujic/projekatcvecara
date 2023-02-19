@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Flower;
+use App\Models\Arrangement;
 use App\Models\User;
 
 
@@ -16,10 +16,11 @@ class Order extends Model
     protected $guarded=[];
     protected $primaryKey = 'order_id';
 
-    public function flower()
+    public function arrangement()
     {
-        return $this->belongsTo(Flower::class,'flower_id');
+        return $this->belongsTo(Arrangement::class,'arrangement_id');
     }
+    
 
     public function user()
     {

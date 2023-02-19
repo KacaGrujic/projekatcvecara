@@ -20,10 +20,9 @@ class OrderResource extends JsonResource
         return[
        // return parent::toArray($request);
       'order_id'=>$this->resource->order_id,
-      'flower_id'=>$this->resource->flower_id,
+      'arrangement_id'=>$this->resource->arrangement,
       'quantity'=>$this->resource->quantity,
       'date_of_order'=>$this->resource->date_of_order,
-      'order_id'=>$this->resource->order_id,
       'user'=>new UserResource($this->resource->user)
         ];
     

@@ -19,9 +19,9 @@ class FlowerResource extends JsonResource
         //return parent::toArray($request);
       'flower_id'=>$this->resource->flower_id,
       'name'=>$this->resource->name,
-      'description'=>$this->resource->description,
-      'price'=>$this->resource->price,
-      'category'=>$this->resource->category,
+      // 'description'=>$this->resource->description,
+      // 'price'=>$this->resource->price,
+      // 'category'=>$this->resource->category,
     ];
     }
 }
