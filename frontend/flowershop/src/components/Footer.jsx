@@ -7,7 +7,7 @@ function Footer() {
       <div className="footer-container">
         <div className="footer-links">
           <a href="/">Home</a>
-          <a href="/shop">Shop</a>
+          <a href="/store">Store</a>
           <a href="/about">About</a>
           <a href="/contact">Contact</a>
         </div>

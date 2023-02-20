@@ -8,7 +8,7 @@ use App\Http\Resources\FlowerCollection;
 use Illuminate\Http\Request;
 
 
-class ArrangementController extends Controller
+class FlowerController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Models\Arrangement;
+use App\Http\Resources\ArrangementCollection;
+use App\Http\Resources\ArrangementResource;
+
+
+
+
 
 class ArrangementController extends Controller
 {
@@ -67,9 +72,9 @@ class ArrangementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Arrangement $arrangement)
     {
-        return new ArrangementResource($order);
+        return new ArrangementResource($arrangement);
     }
 
     /**

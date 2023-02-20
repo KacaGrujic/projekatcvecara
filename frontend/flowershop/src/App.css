@@ -1,58 +1,72 @@
-.App {
+
+.all-products {
+  margin-top: 70px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  flex-basis: 350px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
   text-align: center;
 }
-
-body {
-  margin: 0;
-  padding: 0;
-  font: 16px/1.5 'Montserrat', sans-serif; 
-  background-image: url('https://wallpaper.dog/large/17030689.png');
-  
-  background-repeat: no-repeat;
-  background-size: cover;
-
+.card-body {
+  margin: 20px;
 }
-
-
-
-img {
-  max-width: 200px;
-  height: auto;
-  margin: 0 auto;
+.card-price {
+  font-size: 20px;
 }
-
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card-text {
+  height: 200px;
+  margin-bottom: 35px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.btn {
+  border-style: none;
+  background-color: transparent;
+  margin: 20px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.btn:hover {
+  cursor: pointer;
+}
+.cart-items {
+  position: absolute;
+  right: 20px;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.icon-cart {
+  width: 25px;
+  height: 25px;
+  margin-top: 26px;
+  margin-right: 30px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cart-num {
+  position: absolute;
+  color: rgb(52, 25, 45);
+  font-weight: bold;
+  top: 8px;
+  right: 6px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 5px;
+}
+.div-order {
+  width: 500px;
+  height: fit-content;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  margin: 20px;
+}
+.txt-total {
+  text-align: end;
+}
+.table-order {
+  text-align: center;
+}
+th {
+  padding: 10px;
+}
+td {
+  padding-left: 15px;
+  padding-right: 15px;
 }

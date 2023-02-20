@@ -22,8 +22,8 @@ class ArrangementResource extends JsonResource
            'name'=>$this->resource->name,
            'description'=>$this->resource->description,
            'quantity'=>$this->resource->quantity,
-           'category_id'=>$this->resource->category,
-           'flower_id'=>$this->resource->flower
+           'category'=>$this->resource->category,
+           'flower'=>$this->resource->flower
         ];
     }
 
