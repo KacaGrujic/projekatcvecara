@@ -3,36 +3,38 @@ import $ from 'jquery';
 import 'datatables.net';
 
 function FlowerTable({ data, setData, showArrangement, arrangement, setArrangement }) {
-  const tableRef = useRef(null);
+    const tableRef = useRef(null);
 
-  useEffect(() => {
     const table = $(tableRef.current).DataTable({
-      bDestroy: true,
-      columnDefs: [{
-        defaultContent: '-',
-        targets: '_all'
-      }],
-     
-      data: data,
-      columns: [
-        { data: 'id' },
-        { data: 'naziv' },
-        { data: 'opis' },
-        { data: 'kolicina' },
-        { data: 'cena' },
-        { data: 'url' },
-        { data: 'categoryid' },
-        { data: 'flowerid' },
-        {
-          data: null,
-          defaultContent: '<button class="btnEdit btn btn-primary">edit</button> <button class="btnDelete btn btn-danger">delete</button>',
-          targets: -1
-        }
-      ]
-    });
-
+        bDestroy: true,
+        columnDefs: [{
+          defaultContent: '-',
+          targets: '_all'
+        }],
+       
+        columns: [
+          { data: 'id' },
+          { data: 'naziv' },
+          { data: 'opis' },
+          { data: 'kolicina' },
+          { data: 'cena' },
+          { data: 'url' },
+          { data: 'categoryid' },
+          { data: 'flowerid' },
+          {
+            data: null,
+            defaultContent: '<button class="btnEdit btn btn-primary">edit</button> <button class="btnDelete btn btn-danger">delete</button>',
+            targets: -1
+          }
+        ],
+        data: data
+      });
+      
+      useEffect(() => {
+        table.clear().rows.add(data).draw();
+      }, [data]);
+    
   
-  }, [data]);
 
   return (
     <>
