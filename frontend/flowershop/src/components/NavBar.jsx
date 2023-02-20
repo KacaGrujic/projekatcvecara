@@ -42,6 +42,8 @@ function handleLogout(){
               {<NavLink className='nav-link' to='/cart'>Cart</NavLink>} */}
              {token==null ? (<a className='nav-link' href='/login'>Login</a>):(<a className='nav-link' href='#' onClick={handleLogout}>Logout</a>)}
               {<NavLink className='nav-link' to='/register'>Register</NavLink>}
+              {<NavLink className='nav-link' to='/table'>Tabela</NavLink>}
+
       </nav>
     </header>
     <Outlet/>

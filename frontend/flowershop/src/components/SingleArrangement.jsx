@@ -1,3 +1,40 @@
+
+// import React from 'react'
+// import { ImPlus, ImMinus } from "react-icons/im";
+
+// const SingleArrangement = ({a, onAdd, onRemove}) => {
+//     const design = { margin: 15, borderStyle: "double" };
+    
+  
+//   return (
+//     <div className="card" style={design}>
+//       <img className="card-img-top" src={a.url} alt="Arrangement" width="200px" />
+//       <div className="card-body">
+//         <h3 className="card-title">{a.name}</h3>
+//         {/* <p className="card-text">
+//           {a.description}   
+//         </p> */}
+//         <h3 className="card-title">{a.description}</h3>
+//         <div className='card-btn-wrapper'>
+//           <div className="btn" onClick={() => onAdd(a.arrangement_id)}><ImPlus /></div>
+//           <div className="btn" onClick={() => onRemove(a.arrangement_id)}><ImMinus /></div>
+//           </div>
+//       </div>
+//     </div>
+//   );
+
+  
+// }
+
+// export default SingleArrangement
+
+
+
+
+
+
+
+
 // import React from 'react'
 // import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
@@ -51,9 +88,10 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import styles from './SingleArrangement.module.css';
+import '../style/singlearr.css';
+import { ImPlus, ImMinus } from "react-icons/im";
 
-const SingleArrangement = ({a}) => {
+const SingleArrangement = ({a, onAdd, onRemove}) => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
 
@@ -67,24 +105,22 @@ const SingleArrangement = ({a}) => {
       .catch((error) => console.log(error));
   }
 
+    const design = { margin: 15, borderStyle: "double" };
+    
+  
   return (
-    <div className={styles['card']}>
-    <div className={styles.arrangement}>
-      <div className={`${styles['bg-image']} ${styles['hover-overlay']} ${styles['ripple']}`} data-mdb-ripple-color="light">
-        <img className={styles['arrangement-img-top']} src={a.url} alt="Arrangement" />
-        <h3 className={styles['arrangement-name']}>{a.name}</h3>
-        <h3 className={styles['arrangement-description']}>{a.description}</h3>
-        <h5 className={styles['arrangement-price']}>{a.price}</h5>
-      </div>
-      <div className={styles['card-body']}>
+    <div className="card" >
+      <img className="card-img-top" src={a.url} alt="Arrangement" width="200px" />
+      <div className="card-body">
+        <h2 className="card-title">{a.name}</h2>
+      
+        <h3 className="card-desc">{a.description}</h3>
+        <div className='card-btn-wrapper'>
         
-        <button className={styles['arrangement-button']}>Add</button>
-        <button className={styles['arrangement-button']}>Remove</button>
+      <div className="btn" onClick={() => onAdd(a.arrangement_id)}><ImPlus /></div>
+        <div className="btn" onClick={() => onRemove(a.arrangement_id)}><ImMinus /></div>
       </div>
-      {/* <div className={styles['button-section']}>
-        <input type="number" name="quantity" className={styles.quantity} min="1" max="5" step="1" defaultValue="1" onChange={handleInput} />
-        <button className={styles['arrangement-button']} onClick={handleAddToCart}>Add to Cart</button>
-      </div> */}
+     
     </div>
     </div>
   );
