@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
 
         $user =User::factory()->create();
 
+
+       
         $flower1 = Flower::create([
             'name'=>'Ruza'
         ]);

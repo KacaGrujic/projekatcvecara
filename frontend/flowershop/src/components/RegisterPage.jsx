@@ -13,7 +13,7 @@ const RegisterPage = () => {
     let navigate =useNavigate();
     function handleInput(e){
         let newUserData=userData;
-        console.log(e);
+       // console.log(e);
         newUserData[e.target.name]=e.target.value;
         setUserData(newUserData);
        // console.log(newUserData);

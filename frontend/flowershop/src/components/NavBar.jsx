@@ -19,7 +19,7 @@ function handleLogout(){
   axios(config)
   .then(function(response){
     console.log(JSON.stringify(response.data));
-    window.sessionStorage.set("auth_token",null);
+    window.sessionStorage.setItem("auth_token",null);
   
   })
   .catch(function(error){
@@ -40,7 +40,7 @@ function handleLogout(){
               {<NavLink className='nav-link' to='/admin/create'>Create New Offer</NavLink>}
               { <NavLink className='nav-link' to='/admin/orders/pending'>Pending Orders</NavLink>}
               {<NavLink className='nav-link' to='/cart'>Cart</NavLink>} */}
-             {token==null ? (<a className='nav-link' href='/login'>Login</a>):(<a className='nav-link' href='#' onClick={handleLogout}>Logout</a>)}
+             {token==null ? (<a className='nav-link' href='/login'>Login</a>):(<a className='nav-link' href='/' onClick={handleLogout}>Logout</a>)}
               {<NavLink className='nav-link' to='/register'>Register</NavLink>}
               {<NavLink className='nav-link' to='/table'>Tabela</NavLink>}
 

@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\ArrangementController;
+use App\Http\Controllers\UserController;
+
 
 
 /*
@@ -31,3 +33,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 Route::resource('arrangements', ArrangementController::class)->only(['index','show']);
+Route::resource('users', UserController::class)->only(['index','show']);
+
