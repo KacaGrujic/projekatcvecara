@@ -3,7 +3,7 @@ import { useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
-const LoginPage = ({addToken}) => {
+const LoginPage = ({addToken, addAdmin}) => {
 
 const[userData,setUserData]=useState({
 email:"",
@@ -13,10 +13,10 @@ password:""
 let navigate =useNavigate();
 function handleInput(e){
     let newUserData=userData;
-   // console.log(e);
+   console.log(e);
     newUserData[e.target.name]=e.target.value;
     setUserData(newUserData);
-   // console.log(newUserData);
+   console.log(newUserData);
 
 }
 
@@ -28,22 +28,25 @@ function handleLogin(e){
         console.log(res.data);
         if(res.data.success===true){
          window.sessionStorage.setItem("auth_token",res.data.access_token)
+         window.sessionStorage.setItem("isAdmin",res.data.isAdmin)
          addToken(res.data.access_token);
+        addAdmin(res.data.isAdmin);
          navigate("/")
         }
     })
     .catch((e=>{
         console.log(e);
     }));
-}
-
+} 
+//style={{backgroundImage: 'url("https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp")'}}
+// style={{borderRadius: '15px'}}
   return (
-    <section className="vh-100 bg-image" style={{backgroundImage: 'url("https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp")'}}>
+    <section className="vh-100 bg-image">
     <div className="mask d-flex align-items-center h-100 gradient-custom-3">
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-12 col-md-9 col-lg-7 col-xl-6">
-            <div className="card" style={{borderRadius: '15px'}}>
+            <div className="card" >
               <div className="card-body p-5">
                 <h2 className="text-uppercase text-center mb-5">Create an account</h2>
                 <form onSubmit={handleLogin}>
