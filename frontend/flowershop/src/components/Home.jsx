@@ -7,7 +7,7 @@ function Home() {
     <div className="home-page">
 <h1 className="welcome-message">
         Dobrodosli u online cvecaru!
-        {/* <div className="heart"></div> */}
+        <div className="heart"></div>
         
       </h1>
       {/* <div className="petal-container">

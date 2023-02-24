@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import {useEffect, useState } from 'react';
 import FlowerTable from './components/FlowerTable';
 import axios from 'axios'
+import AdminHomePage from './components/AdminHomePage';
 
 function App() {
 
@@ -45,7 +46,7 @@ function addToken(auth_token){
         {/* <Route path='/' element={<NavBar token={token}/>}>  */}
         
           <Route path='/store' element={<Store/>}/>
-          <Route path='/table' element={<FlowerTable data={data} setData={setData}/>}/>
+          <Route path='/adminhomepage' element={<AdminHomePage data={data} setData={setData}/>}/>
       
 
       {/* </Route> */}
