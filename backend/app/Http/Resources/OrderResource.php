@@ -2,9 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\OrderItemResource;
 
 class OrderResource extends JsonResource
 {
@@ -14,12 +12,11 @@ class OrderResource extends JsonResource
      * @return array<string, mixed>
      */
  
-    public function toArray(Request $request): array
+    public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'customer_name' => $this->customer_name,
-            'user_id'=> $this->resource->user_id,
+            'id' => $this->resource->id,
+            'user_id' => $this->resource->user_id,
         ];
     }
 }

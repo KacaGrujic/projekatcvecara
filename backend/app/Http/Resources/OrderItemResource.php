@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
+use App\Models\Flower;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\FlowerResource;
 
@@ -13,13 +15,13 @@ class OrderItemResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray(Request $request): array
+    public function toArray($request)
     {
         return [
-            'order' => $this->order_id,
+            'order' => $this->resource->order_id,
             'flower' => new FlowerResource(Flower::find($this->resource->flower_id)),
             'user'=>new UserResource(User::find($this->resource->user_id)),
-            'quantity' => $this->quantity,
+            'quantity' => $this->resource->quantity,
        
         ];
     }

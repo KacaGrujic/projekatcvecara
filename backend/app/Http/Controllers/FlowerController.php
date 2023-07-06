@@ -5,25 +5,39 @@ namespace App\Http\Controllers;
 use App\Models\Flower;
 use Illuminate\Http\Request;
 use App\Http\Resources\FlowerResource;
-use App\Http\Resources\FlowerCollection;
+
 use Illuminate\Support\Facades\Validator;
 
 class FlowerController extends Controller
 {
-
+ /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $flowers = Flower::all();
-    
-        return new FlowerCollection($flowers);
+        return FlowerResource::collection(Flower::all());
     }
     
+     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Flower  $flower
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
-        $flower = Flower::find($id);
-    
-        return new FlowerResource($flower);
+        return new FlowerResource(Flower::find($id));
     }
+
+ /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
     public function store(Request $request)
     {
         $validator = Validator::make(
@@ -52,6 +66,14 @@ class FlowerController extends Controller
     return response()->json(["Flower succcessfully added", $f]);
     }
 
+  /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Flower  $flower
+     * @return \Illuminate\Http\Response
+     */
+
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
@@ -76,6 +98,12 @@ class FlowerController extends Controller
             return response()->json('Certain flower does not exist.');
         }
     }
+   /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Flower  $flower
+     * @return \Illuminate\Http\Response
+     */
 
     public function destroy($id)
     {
