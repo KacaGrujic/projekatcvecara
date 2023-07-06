@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class FlowerCollection extends ResourceCollection
@@ -9,11 +10,10 @@ class FlowerCollection extends ResourceCollection
     /**
      * Transform the resource collection into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @return array<int|string, mixed>
      */
-    public static $wrap='flowers';
-    public function toArray($request)
+
+    public function toArray(Request $request): array
     {
         return parent::toArray($request);
     }

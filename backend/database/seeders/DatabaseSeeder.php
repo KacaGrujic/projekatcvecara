@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Order;
-use App\Models\Arrangement;
+use App\Models\Flower;
 use App\Models\User;
 use App\Models\Category;
-use App\Models\Flower;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,58 +17,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Order::truncate();
-        User::truncate();
-        Arrangement::truncate();
-	    Category::truncate();
-        Flower::truncate();
-
-        $user =User::factory()->create();
+      User::truncate();
+      Category::truncate();
+      Order::truncate();
+      Flower::truncate();
 
 
-       
-        $flower1 = Flower::create([
-            'name'=>'Ruza'
-        ]);
+      $admin = new User();
+      $admin->name="Admin";
+      $admin->email="admin@gmail.com";
+      $admin->password= Hash::make("admin");
+      $admin->admin = 1;
+      $admin->save();
+      User::factory(10)->create();
 
-        $flower2 = Flower::create([
-            'name'=>"Orhideja"
-        ]);
-        $flower3 = Flower::create([
-            'name'=>"Suncokret"
-        ]);
-        $flower4 = Flower::create([
-            'name'=>"Gerber"
-        ]);
-        $flower5 = Flower::create([
-            'name'=>"Ljiljan"
-        ]);
-        $flower6 = Flower::create([
-            'name'=>"Lala"
-        ]);
+      $c = new CategorySeeder(); 
+      $c->run();
 
-        $category1 = Category::create([
-            'name'=>"Rodjendan"
-        ]);
-
-
-        $category2 = Category::create([
-            'name'=>"Svadba"
-        ]);
-
-        $category3 = Category::create([
-            'name'=>"Godisnjica"
-        ]);
-
-        $arrangement1 = Arrangement::create([
-            'name' => "Buket ruza",
-            'description' => "Buketi ruža pričaju čarobnu priču koja će opčiniti Vama dragu osobu.",
-            'quantity' => 5,
-            'price'=> 100,
-            'url'=>"https://cvecar.com/wp-content/uploads/buket-25-ruza.jpg",
-            'category_id' => $category3->category_id,
-            'flower_id' => $flower1->flower_id
-        ]);
-
+      $f = new FlowerSeeder();
+      $f->run();
     }
 }

@@ -4,18 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Order;
-
 
 class Flower extends Model
 {
     use HasFactory;
-    protected $guarded=[];
-    public $timestamps=false;
-    protected $primaryKey = 'flower_id';
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'quantity',
+        'image',
+        'category'
+    ];
 
-    public function order()
+    public function category()
     {
-        return $this->hasMany(Order::class);
+       return $this->belongsTo(Category::class);
     }
+    public function orderItems()
+    {
+       return $this->belongsTo(OrderItem::class);
+    }
+
+
 }

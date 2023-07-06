@@ -9,55 +9,97 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
+
+
 class AuthController extends Controller
 {
-    public function register(Request $request){
-        $validator=Validator::make($request->all(),[
-       'name'=>'required|string|max:255',
-       'email'=>'required|string|email|max:255|unique:users',
-       'password'=>'required|string|min:8',
-       'isAdmin'=>'required|integer'
-       ]);
-   if ($validator->fails()){
-       return response()->json($validator->errors());
-   }
-   
-   $user=User::create([
-       'name'=>$request->name,
-       'email'=>$request->email,
-       'password'=>Hash::make($request->password),
-       'isAdmin'=>$request->isAdmin
-   ]);
-   $token=$user->createToken('auth_token')->plainTextToken;
-   return response()
-   ->json(['data'=>$user,'access_token'=>$token,'token_type'=>'Bearer']);
-   }
-   
-   
-   
-   
-   public function login(Request $request)
-   {
-       if(!Auth::attempt($request->only('email','password')))
-       {
-       return response()
-           ->json(['success'=>false]);
-       }
-   
-       $user=User::where('email',$request['email'])->firstOrFail();
-   
-       $token=$user->createToken('auth_token')->plainTextToken;
-       return response()
-       ->json(['success'=>true, 'access_token'=>$token,'token_type'=>'Bearer']);
-   }
-   
-   
-   public function logout(){
-   
-   auth()->user()->tokens()->delete();
-   return[
-       'message'=>'You have successfully logged out and the token was successfully deleted'
-   ];
-   }
-   
+    public function register(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'password' => 'required',
+                'name' => 'required|string|max:100',
+                'email' => 'required|string|max:100|email',
+                'phone' => 'string',
+                'birthdate' => 'string',
+
+            ]
+        );
+        if ($validator->fails())
+            return response()->json($validator->errors());
+
+
+
+
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'birthdate' => $request->birthdate,
+
+
+            'password' => Hash::make($request->password)
+        ]);
+
+
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+        return response()->json(['data' => $user, 'access_token' => $token, 'token_type' => 'Bearer']);
+    }
+
+
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false]);
+        }
+
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return response()->json(['poruka' => 'Wrong email or password!']);
+        }
+
+        $user = User::where('email', $request['email'])->firstOrFail();
+
+
+        if (!$user) {
+            return response()->json([
+                'status' => 401,
+                'message' => 'Invalid credentials',
+            ]);
+        } else {
+            if ($user->admin == 1) {
+                $role = 'admin';
+                $token = $user->createToken($user->email . '_AdminToken', ['server:admin'])->plainTextToken;
+            } else {
+                $role = ' ';
+                $token = $user->createToken($user->email . '_Token', [''])->plainTextToken;
+            }
+        }
+
+
+
+        $response = [
+            'status' => 200,
+            'username' => $user->name,
+            'token' => $token,
+            'role' => $role,
+            'id' => $user->id
+        ];
+
+        return response()->json([$response, 'success' => true]);
+    }
+
+
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+        return response()->json(['You have successfully logged out and the token was successfully deleted!']);
+    }
 }

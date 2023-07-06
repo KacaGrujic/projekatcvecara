@@ -3,110 +3,91 @@
 namespace App\Http\Controllers;
 
 use App\Models\Flower;
+use Illuminate\Http\Request;
 use App\Http\Resources\FlowerResource;
 use App\Http\Resources\FlowerCollection;
-use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
 
 class FlowerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        $flowers=Flower::all();
+        $flowers = Flower::all();
+    
         return new FlowerCollection($flowers);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $validator=Validator::make($request->all(),[
-            'flower_id'=>'required',
-            'name'=>'required',
-            'description'=>'required',
-            'category_id'=>'required',
-            'price'=>'required'
-          ]);
-          if ($validator->fails()){
-              return response()->json($validator->errors());
-          }
-  
-  $f=Flower::create([
-      'flower_id'=>$request->flower_id,
-      'name'=>$request->name,
-      'description'=>$request->description,
-      'category_id'=>$request->category_id,
-      'price'=>$request->price
-  ]);
-  
-  return response()
-  ->json(['Post created successfully.', new FlowerResource($r)]);
-  }
     
-    
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Flower $flower)
+    public function show($id)
     {
+        $flower = Flower::find($id);
+    
         return new FlowerResource($flower);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Flower $flower)
+    public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+            'name' => 'required|string',
+            'description' => 'required|string|max:100',
+            'price' => 'required',
+            'image' => 'required',
+            'category' => 'required',
+        ]
+    );
+
+    if ($validator->fails())
+    return response()->json($validator->errors());
+
+    $f = Flower::create([
+        'name' => $request->name,
+        'price' => $request->price,
+        'description' => $request->description,
+        'quantity' => 0,
+        'category' => $request->category,
+        'image' => $request->image
+
+    ]);
+    return response()->json(["Flower succcessfully added", $f]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Flower $flower)
+    public function update(Request $request, $id)
     {
-        $validator=Validator::make($request->all(),[
-            'name'=>'required',
-            'description'=>'required',
-            'category_id'=>'required',
-            'price'=>'required'
-          ]);
-          if ($validator->fails()){
-              return response()->json($validator->errors());
-          }
+        $validator = Validator::make($request->all(), [
 
 
-$reservation->name=$request->name;
-$description->name=$request->description;
-$category_id->name=$request->category_id;
-$price->name=$request->price;
+        ]);
 
-$flower->save();
+        $f = Flower::find($request->id);
+        if ($f) {
+            $f->name = $request->name;
+            $f->description = $request->description;
+            $f->price = $request->price;
+            $f->category = $request->category;
+            $f->image = $request->image;
+            $f->quantity = 0;
 
-return response()
-->json(['Reservation updated successfully.', new FlowerResource($flower)]);
+
+
+            $f->save();
+            return response()->json(['Flower is successfully updated!', new FlowerResource($f)]);
+        } else {
+            return response()->json('Certain flower does not exist.');
+        }
     }
-    
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Flower $flower): RedirectResponse
+    public function destroy($id)
     {
-        $flower->delete();
-        return response()->json('Reservation deleted successfully.');
+        $f = Flower::find($id);
+        if ($f) {
+            $f->delete();
+            return response()->json("Flower is successfully deleted!");
+        } else {
+
+            return response()->json([
+                'message' => 'Flower does not exist.',
+            ], 400);
+        }
     }
 }

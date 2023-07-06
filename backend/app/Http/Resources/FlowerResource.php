@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -12,16 +13,16 @@ class FlowerResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-
-    public static $wrap='flowers';
+ 
     public function toArray(Request $request): array
-    { return [
-        //return parent::toArray($request);
-      'flower_id'=>$this->resource->flower_id,
-      'name'=>$this->resource->name,
-      // 'description'=>$this->resource->description,
-      // 'price'=>$this->resource->price,
-      // 'category'=>$this->resource->category,
-    ];
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'price' => $this->price,
+            'category' => new CategoryResource(Category::find($this->resource->category)),
+            'image' => $this->image,
+        ];
     }
 }

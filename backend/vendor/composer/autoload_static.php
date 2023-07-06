@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit44759ad4fc44733e4cd36627a05939a9
+class ComposerStaticInit0ae0e1c347019ce9368e09d969ea51c9
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -508,11 +508,13 @@ class ComposerStaticInit44759ad4fc44733e4cd36627a05939a9
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\API\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/AuthController.php',
-        'App\\Http\\Controllers\\ArrangementController' => __DIR__ . '/../..' . '/app/Http/Controllers/ArrangementController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FlowerController' => __DIR__ . '/../..' . '/app/Http/Controllers/FlowerController.php',
         'App\\Http\\Controllers\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderController.php',
+        'App\\Http\\Controllers\\OrderItemController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderItemController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminMiddleware.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
@@ -522,15 +524,16 @@ class ComposerStaticInit44759ad4fc44733e4cd36627a05939a9
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-        'App\\Http\\Resources\\ArrangementResource' => __DIR__ . '/../..' . '/app/Http/Resources/ArrangementResource.php',
+        'App\\Http\\Resources\\CategoryResource' => __DIR__ . '/../..' . '/app/Http/Resources/CategoryResource.php',
         'App\\Http\\Resources\\FlowerCollection' => __DIR__ . '/../..' . '/app/Http/Resources/FlowerCollection.php',
         'App\\Http\\Resources\\FlowerResource' => __DIR__ . '/../..' . '/app/Http/Resources/FlowerResource.php',
+        'App\\Http\\Resources\\OrderItemResource' => __DIR__ . '/../..' . '/app/Http/Resources/OrderItemResource.php',
         'App\\Http\\Resources\\OrderResource' => __DIR__ . '/../..' . '/app/Http/Resources/OrderResource.php',
         'App\\Http\\Resources\\UserResource' => __DIR__ . '/../..' . '/app/Http/Resources/UserResource.php',
-        'App\\Models\\Arrangement' => __DIR__ . '/../..' . '/app/Models/Arrangement.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Flower' => __DIR__ . '/../..' . '/app/Models/Flower.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
+        'App\\Models\\OrderItem' => __DIR__ . '/../..' . '/app/Models/OrderItem.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -647,9 +650,10 @@ class ComposerStaticInit44759ad4fc44733e4cd36627a05939a9
         'Cron\\HoursField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
-        'Database\\Factories\\ArrangementFactory' => __DIR__ . '/../..' . '/database/factories/ArrangementFactory.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
+        'Database\\Seeders\\CategorySeeder' => __DIR__ . '/../..' . '/database/seeders/CategorySeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\FlowerSeeder' => __DIR__ . '/../..' . '/database/seeders/FlowerSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
         'DeepCopy\\Exception\\PropertyException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',
@@ -6243,10 +6247,10 @@ class ComposerStaticInit44759ad4fc44733e4cd36627a05939a9
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit44759ad4fc44733e4cd36627a05939a9::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit44759ad4fc44733e4cd36627a05939a9::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit44759ad4fc44733e4cd36627a05939a9::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit44759ad4fc44733e4cd36627a05939a9::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0ae0e1c347019ce9368e09d969ea51c9::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0ae0e1c347019ce9368e09d969ea51c9::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit0ae0e1c347019ce9368e09d969ea51c9::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit0ae0e1c347019ce9368e09d969ea51c9::$classMap;
 
         }, null, ClassLoader::class);
     }
