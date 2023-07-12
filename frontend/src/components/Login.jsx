@@ -26,12 +26,12 @@ function Login({ addToken }) {
         addToken(res.data[0].token);
         console.log(res.data[0].token);
         if (res.data[0].role === "admin") {
-          navigate("/admin");
+          navigate("/Admin");
         } else {
-          navigate("/flowers");
+          navigate("/Flowers");
         }
       } else {
-        alert("NEUSPESNO");
+        alert("FAILED");
       }
     });
   }
@@ -41,7 +41,7 @@ function Login({ addToken }) {
         <div id="contact-box">
           <div id="left"></div>
           <div id="right">
-            <h2 className="title">Uloguj se</h2>
+            <h2 className="title">Log in</h2>
             <form onSubmit={handleLogin}>
               <div className="input-group">
                 <input
@@ -69,14 +69,14 @@ function Login({ addToken }) {
                   id="login"
                   name="login"
                 >
-                  Potvrdi
+                  Confirm
                 </button>
               </div>
               <br />
               <br />
               <p>
                 <a href="/Register" className="tekstForme">
-                  Zdravo
+                  Welcome!
                 </a>
               </p>
             </form>

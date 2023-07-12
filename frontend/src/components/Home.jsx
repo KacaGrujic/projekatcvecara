@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from "react";
 import { Slide } from "react-slideshow-image";
-import 'react-slideshow-image/dist/styles.css'
+import "react-slideshow-image/dist/styles.css";
 
 const slideImages = [
-  "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
-  "https://images.unsplash.com/photo-1606902965551-dce093cda6e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c3BvcnQlMjB3ZWFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-  "https://images.unsplash.com/photo-1597460970375-1449df2fb73a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA3fHxzcG9ydHMlMjB3ZWFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
+  "https://images.pexels.com/photos/1154557/pexels-photo-1154557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.unsplash.com/photo-1589244159943-460088ed5c92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zmxvd2VyJTIwc2hvcHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
+  "https://www.innatthemarket.com/wp-content/uploads/2023/02/Pike-Place-Flowers-scaled.jpg",
 ];
 
 const Home = () => {

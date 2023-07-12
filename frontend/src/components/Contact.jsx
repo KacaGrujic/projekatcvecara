@@ -40,7 +40,7 @@ function Contact() {
             <div id="left"></div>
             <div id="right">
               <form onSubmit={handleSend}>
-                <h2>Contact us</h2>
+                <h2>Contact us!</h2>
                 <input
                   type="text"
                   className="field"
@@ -62,7 +62,7 @@ function Contact() {
                   onInput={handleInput}
                 ></textarea>
                 <button type="submit" className="btn btn-secondary">
-                  Pošalji
+                  Send
                 </button>
               </form>
             </div>
@@ -103,6 +103,7 @@ function Contact() {
             ></iframe>
           </div>
         </div>
+        
       </div>
     </div>
   );

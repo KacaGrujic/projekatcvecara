@@ -1,13 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\FlowerController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\OrderItemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\FlowerController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderItemController;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,19 +14,16 @@ use App\Http\Controllers\UserController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
 |
 */
 
-
-//Route::post('/kontakt', [PorukaController::class, 'primiPoruku']);
-
-//Route::get('/poruke', [PorukaController::class, 'index']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::post('/contact', [MessageController::class, 'recieveMessage']);
+
+Route::post('/contact', [MessageController::class, 'recieveAMessage']);
 
 Route::get('/messages', [MessageController::class, 'index']);
 
@@ -36,7 +32,7 @@ Route::post('/flower', [FlowerController::class, 'store']);
 Route::put('/flower/{id}', [FlowerController::class, 'update']);
 Route::delete('/flower/{id}', [FlowerController::class, 'destroy']);
 Route::get('/flower/{id}', [FlowerController::class, 'show']);
-Route::resource('order-items', OrderItemController::class);
+Route::resource('orderitems', OrderItemController::class);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get(
@@ -56,7 +52,7 @@ Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
     Route::get(
         '/check',
         function () {
-            return response()->json(['message' => 'Admin ulogovan'], 200);
+            return response()->json(['message' => 'Admin logged in.'], 200);
         }
     );
 

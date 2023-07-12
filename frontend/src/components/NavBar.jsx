@@ -3,7 +3,7 @@ function NavBar({ token, logout }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="/">
-        Flower shop
+      BLOSSOM BLOOMS
       </a>
       <button
         className="navbar-toggler"
@@ -22,7 +22,7 @@ function NavBar({ token, logout }) {
             <>
               <li className="nav-item">
                 <Link className="nav-link" to="/login">
-                  Login
+                  Log in
                 </Link>
               </li>
               <li className="nav-item">
@@ -47,7 +47,7 @@ function NavBar({ token, logout }) {
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="/admin/analytics">
-                      Antalytics
+                      Analytics
                     </Link>
                   </li>
                 </>
@@ -55,11 +55,11 @@ function NavBar({ token, logout }) {
                 <>
                   <li className="nav-item">
                     <Link className="nav-link" to="/flowers">
-                      Flowers
+                      Shop
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/cart">
+                    <Link className="nav-link" to="/order">
                       Cart
                     </Link>
                   </li>

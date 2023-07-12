@@ -1,10 +1,9 @@
 import React from "react";
 import { MDBDataTableV5 } from "mdbreact";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 function Inbox({ messages }) {
-  var navigate = useNavigate();
   console.log(messages);
   const [dataTable, setDataTable] = useState({
     columns: [
@@ -30,9 +29,11 @@ function Inbox({ messages }) {
     ],
     rows: messages.map((m) => {
       return {
-        name: m.name,
+         name: m.name,
         email: m.email,
         message: m.message,
+       
+   
       };
     }),
   });
@@ -50,7 +51,7 @@ function Inbox({ messages }) {
         </>
       ) : (
         <>
-          <h1 style={{ color: "red" }}>You do not have access!</h1>
+          <h1 style={{ color: "red" }}>Access denied</h1>
         </>
       )}
     </div>

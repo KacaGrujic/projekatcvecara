@@ -13,7 +13,7 @@ function Analytics({ flowers }) {
         </>
       ) : (
         <>
-          <h1 style={{ color: "red" }}>You do not have access!</h1>
+          <h1 style={{ color: "red" }}>Access denied</h1>
         </>
       )}
     </div>

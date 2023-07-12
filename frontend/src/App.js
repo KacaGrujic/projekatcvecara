@@ -1,35 +1,31 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import NavBar from './components/NavBar';
-import Home from './components/Home';
+import "./App.css";
 
-import Login from './components/Login';
-import axios from 'axios'
+
+import Register from "./Components/Register";
+
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
+import "./Components/LoginRegister.css";
 
-import RegisterPage from './components/RegisterPage';
-import Footer from './components/Footer';
-import Cart from './components/Cart';
-import AboutUs from './components/AboutUs';
-import AdminView from './components/AdminView';
-
-import EditFlower from './components/EditFlower';
-import Analytics from './components/Analytics';
-import Inbox from './components/Inbox';
-import Contact from './components/Contact';
-import FlowersPage from './components/FlowersPage';
-
-
-
-
-const App = () => {
-
+import Footer from "./components/Footer";
+import NavBar from "./components/NavBar";
+import Login from "./components/Login";
+import Flower from "./components/Flower";
+import Order from "./components/Order";
+import Contact from "./components/Contact";
+import Inbox from "./components/Inbox";
+import AdminView from "./components/AdminView";
+import Edit from "./components/Edit";
+import Add from "./components/Add";
+import Analytics from "./components/Analytics";
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
+function App() {
   const [token, setToken] = useState();
   const [cartNum, setCartNum] = useState(0);
   const [cartProducts, setCartProducts] = useState([]);
@@ -37,7 +33,7 @@ const axiosInstance = axios.create({
   const [flowers, setFlowers] = useState([]);
   const [messages, setMessages] = useState([]);
   const [ID, setID] = useState(0);
-  const [categoryID, setcategoryID] = useState(0);
+  const [categoryID, setCategoryID] = useState(0);
   useEffect(() => {
     const getRandomLists = async () => {
       try {
@@ -86,22 +82,22 @@ const axiosInstance = axios.create({
     setToken(auth_token);
   }
   function refreshCart() {
-    let inCart = flowers.filter((f) => f.quantity > 0);
-    setCartProducts(inCart);
-    var sum = 0;
-    if (inCart.length === 1) {
-      sum = inCart[0].price * inCart[0].quantity;
+    let in_cart = flowers.filter((f) => f.quantity > 0);
+    setCartProducts(in_cart);
+    var suma = 0;
+    if (in_cart.length === 1) {
+      suma = in_cart[0].price * in_cart[0].quantity;
     } else {
-      for (var x = 0; x < inCart.length; x++) {
-        sum += inCart[x].price * inCart[x].quantity;
+      for (var x = 0; x < in_cart.length; x++) {
+        suma += in_cart[x].price * in_cart[x].quantity;
       }
-    
+   
     }
 
-    console.log(sum);
-    setSumPrice(sum);
+    console.log(suma);
+    setSumPrice(suma);
   }
-  function isInCart(id) {
+  function IsInCart(id) {
     var exists = 0;
     cartProducts.forEach((f) => {
       if (f.id === id) {
@@ -126,7 +122,7 @@ const axiosInstance = axios.create({
   }
 
   function removeProduct(id) {
-    if (isInCart(id) === 1) {
+    if (IsInCart(id) === 1) {
       setCartNum(cartNum - 1);
       flowers.forEach((f) => {
         if (f.id === id) {
@@ -170,7 +166,7 @@ const axiosInstance = axios.create({
 
   function IDEdit(id, categoryID) {
     setID(id);
-    setcategoryID(categoryID);
+    setCategoryID(categoryID);
   }
 
   return (
@@ -183,30 +179,30 @@ const axiosInstance = axios.create({
             path="/login"
             element={<Login addToken={addToken}></Login>}
           ></Route>
-          <Route path="/register" element={<RegisterPage></RegisterPage>}></Route>
+          <Route path="/register" element={<Register></Register>}></Route>
           <Route
             path="/flowers"
             element={
-              <FlowersPage
+              <Flower
                 flowers={flowers}
                 onAdd={addProduct}
                 onRemove={removeProduct}
-              ></FlowersPage>
+              ></Flower>
             }
           ></Route>
           <Route
-            path="/cart"
+            path="/order"
             element={
-              <Cart
+              <Order
                 flowers={cartProducts}
                 onAdd={addProduct}
                 onRemove={removeProduct}
                 sum={sum}
-              ></Cart>
+              ></Order>
             }
           ></Route>
           <Route path="/contact" element={<Contact></Contact>}></Route>
-        <Route
+          <Route
             path="/admin/inbox"
             element={<Inbox messages={messages}></Inbox>}
           ></Route>
@@ -214,7 +210,7 @@ const axiosInstance = axios.create({
             path="/admin"
             element={
               <AdminView
-                flowers={flowers}
+              flowers={flowers}
                 deleteFlower={deleteFlower}
                 setID={IDEdit}
               ></AdminView>
@@ -222,7 +218,11 @@ const axiosInstance = axios.create({
           ></Route>
           <Route
             path="/admin/edit"
-            element={<EditFlower id={ID} categoryID={categoryID}></EditFlower>}
+            element={<Edit id={ID} categoryID={categoryID}></Edit>}
+          ></Route>
+            <Route
+            path="/admin/add"
+            element={<Add ></Add>}
           ></Route>
           <Route
             path="/admin/analytics"
@@ -236,4 +236,3 @@ const axiosInstance = axios.create({
 }
 
 export default App;
-

@@ -11,7 +11,7 @@ import {
 function Plot({ flowers }) {
   const data = [];
   for (var i = 0; i < flowers.length; i++) {
-    data.push({ x: flowers[i].id, y: flowers[i].cena });
+    data.push({ x: flowers[i].id, y: flowers[i].price });
     console.log(data);
   }
   return (
@@ -21,7 +21,7 @@ function Plot({ flowers }) {
       <div style={{ margin: "20px" }}>
         <br />
         <br />
-        <h2>Product prices</h2>
+        <h2>Flower prices:</h2>
         <XYPlot height={400} width={600}>
           <VerticalGridLines />
           <HorizontalGridLines />

@@ -10,6 +10,8 @@ class OrderItemController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -18,7 +20,8 @@ class OrderItemController extends Controller
 
     /**
      * Show the form for creating a new resource.
-      * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -27,10 +30,10 @@ class OrderItemController extends Controller
 
     /**
      * Store a newly created resource in storage.
-      * @param  \Illuminate\Http\Request  $request
+     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     public function store(Request $request)
     {
         $validator = Validator::make(
@@ -44,38 +47,39 @@ class OrderItemController extends Controller
         );
         if ($validator->fails())
             return response()->json($validator->errors());
- 
-            
+
+
+
+
+
         $oi = OrderItem::create([
-            'order_id' => $request->korpa_id,
-            'flower_id' => $request->proizvod_id,
-            'quantity' => $request->kolicina,
+            'order_id' => $request->order_id,
+            'flower_id' => $request->flower_id,
+            'quantity' => $request->quantity,
 
 
 
 
         ]);
-        return response()->json(["Product item successfully created", $oi]);
+        return response()->json(["Order item successfully created", $oi]);
         ;
-
     }
-    
 
     /**
      * Display the specified resource.
-      * @param  \App\Models\OrderItem  $orderItem
+     *
+     * @param  \App\Models\OrderItem $orderItem
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         return OrderItem::find($id);
-    
-    
     }
 
     /**
      * Show the form for editing the specified resource.
-    * @param  \App\Models\OrderItem  $orderItem
+     *
+     * @param  \App\Models\OrderItem $orderItem
      * @return \Illuminate\Http\Response
      */
     public function edit(OrderItem $orderItem)
@@ -85,18 +89,20 @@ class OrderItemController extends Controller
 
     /**
      * Update the specified resource in storage.
-    * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OrderItem  $orderItem
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\OrderItem $orderItem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderItem $orderItem)
+    public function update(Request $request, StavkaKorpe $stavkaKorpe)
     {
         //
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param  \App\Models\OrderItem  $orderItem
+     *
+     * @param  \App\Models\OrderItem $orderItem
      * @return \Illuminate\Http\Response
      */
     public function destroy(OrderItem $orderItem)

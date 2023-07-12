@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Flower;
-use Illuminate\Http\Request;
 use App\Http\Resources\FlowerResource;
 
+use App\Models\Flower;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class FlowerController extends Controller
 {
- /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -19,8 +20,56 @@ class FlowerController extends Controller
     {
         return FlowerResource::collection(Flower::all());
     }
-    
-     /**
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required',
+                'description' => 'required|string|max:100',
+                'price' => 'required',
+                'category' => 'required',
+                'image' => 'required'
+
+            ]
+        );
+        if ($validator->fails())
+            return response()->json($validator->errors());
+
+
+
+
+
+        $f = Flower::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'quantity' => 0,
+            'category' => $request->category,
+            'image' => $request->image
+
+        ]);
+        return response()->json(["Flower succcessfully added", $f]);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Flower  $flower
@@ -31,55 +80,33 @@ class FlowerController extends Controller
         return new FlowerResource(Flower::find($id));
     }
 
- /**
-     * Store a newly created resource in storage.
+    /**
+     * Show the form for editing the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Flower  $flower
      * @return \Illuminate\Http\Response
      */
-
-    public function store(Request $request)
+    public function edit(Proizvod $proizvod)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-            'name' => 'required|string',
-            'description' => 'required|string|max:100',
-            'price' => 'required',
-            'image' => 'required',
-            'category' => 'required',
-        ]
-    );
-
-    if ($validator->fails())
-    return response()->json($validator->errors());
-
-    $f = Flower::create([
-        'name' => $request->name,
-        'price' => $request->price,
-        'description' => $request->description,
-        'quantity' => 0,
-        'category' => $request->category,
-        'image' => $request->image
-
-    ]);
-    return response()->json(["Flower succcessfully added", $f]);
+        //
     }
 
-  /**
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Flower  $flower
      * @return \Illuminate\Http\Response
      */
-
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
 
 
         ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors());
 
         $f = Flower::find($request->id);
         if ($f) {
@@ -98,13 +125,13 @@ class FlowerController extends Controller
             return response()->json('Certain flower does not exist.');
         }
     }
-   /**
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Flower  $flower
      * @return \Illuminate\Http\Response
      */
-
     public function destroy($id)
     {
         $f = Flower::find($id);
